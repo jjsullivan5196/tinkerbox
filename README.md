@@ -1,5 +1,7 @@
 # Tinkerbox - Jupyter Kernel running inside Thinkbox Deadline
 
+![Dialog Example](contrib/dialog.png)
+
 This package shims the ipython jupyter kernel into Deadline's python sandbox,
 allowing you to interactively run Deadline client code inside of Jupyter
 Notebooks. The shim starts the regular `ipykernel` inside of `deadlinecommand`,

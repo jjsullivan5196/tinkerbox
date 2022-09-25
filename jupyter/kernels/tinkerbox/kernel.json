@@ -1,5 +1,10 @@
 {
-  "argv": ["python", "-m", "tinkerbox", "-f", "{connection_file}"],
+  "argv": [
+    "python", "-m", "tinkerbox", "-f", "{connection_file}"
+  ],
   "display_name": "Tinkerbox (Deadline Interactive)",
-  "language": "python"
+  "language": "python",
+  "metadata": {
+    "debugger": true
+  }
 }

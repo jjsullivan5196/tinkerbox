@@ -26,7 +26,6 @@ def __main__(*args):
 def __run_deadlinecommand():
   "Stub for execing to Deadline's sandboxed interpreter."
   import os
-  import platform
 
   # Find deadlinecommand
   deadline_command = None

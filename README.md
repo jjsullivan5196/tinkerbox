@@ -67,5 +67,5 @@ redistribute any code found inside of Thinkbox Deadline.
 
 Jupyter Lab is a registered trademark of the Jupyter Project.
 
-This software is distributed under the terms of the GNU Public License v3,
+This software is distributed under the terms of the GNU General Public License v3,
 please see `COPYING` for terms.

@@ -1,9 +1,25 @@
 import sys
+import platform
+
+SYSTEM = platform.system()
 
 def __main__(*args):
   "Start the ipython kernel."
+  # Forward args from the exec wrapper
   sys.argv.extend(args)
 
+  # Set the system python interpreter for debugpy, so it can launch the adapter server
+  import debugpy
+  import shutil
+
+  # Python on Windows installs under `python.exe`, otherwise look for `python3`
+  # TODO there may be a less-hacky way to find the system interpreter
+  sys_python_binname = "python" if SYSTEM == 'Windows' else "python3"
+  sys_python_path = shutil.which(sys_python_binname)
+
+  debugpy.configure({"python": sys_python_path})
+
+  # Launch the kernel
   from ipykernel.kernelapp import launch_new_instance
   launch_new_instance()
 
@@ -13,14 +29,13 @@ def __run_deadlinecommand():
   import platform
 
   # Find deadlinecommand
-  system = platform.system()
   deadline_command = None
 
-  if system == 'Linux':
+  if SYSTEM == 'Linux':
     deadline_command = f"{os.environ['DEADLINE_PATH']}/deadlinecommand"
-  elif system == 'Windows':
+  elif SYSTEM == 'Windows':
     deadline_command = f"{os.environ['DEADLINE_PATH']}/deadlinecommand.exe"
-  elif system == 'Darwin':
+  elif SYSTEM == 'Darwin':
     with open("/Users/Shared/Thinkbox/DEADLINE_PATH", 'r') as path_file:
       deadline_path = path_file.read().strip()
       deadline_command = f"{deadline_path}/deadlinecommand"

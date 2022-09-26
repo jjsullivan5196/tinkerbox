@@ -48,6 +48,14 @@ Once installed, the kernel spec will be available for use by jupyter. Start
 Everything in the [Deadline Scripting Manual](https://docs.thinkboxsoftware.com/products/deadline/10.1/1_User%20Manual/manual/index-scripting.html) applies within notebooks using
 this kernel.
 
+## Known issues
+- The kernel uses Deadline's python environment wholesale, in particular
+  `sys.executable` ends up being `deadlinecommand.dll` since it's the program
+  hosting the interpreter. This might potentially cause issues for libraries
+  that depend on the interpreter being executable for things like
+  `subprocess`. So far, only debugpy has needed a monkeypatch to work, this may
+  change in the future.
+
 ## TODO
 
 - Add configuration for starting the kernel in different repositories

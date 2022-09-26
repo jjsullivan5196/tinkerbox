@@ -1,10 +1,14 @@
 import sys
+import os
 import platform
 
 SYSTEM = platform.system()
 
 def __main__(*args):
   "Start the ipython kernel."
+  # deadlinecommand starts whereever it wants, we don't want that
+  os.chdir(os.environ['PWD'])
+
   # Forward args from the exec wrapper
   sys.argv.extend(args)
 
@@ -25,8 +29,6 @@ def __main__(*args):
 
 def __run_deadlinecommand():
   "Stub for execing to Deadline's sandboxed interpreter."
-  import os
-
   # Find deadlinecommand
   deadline_command = None
 
